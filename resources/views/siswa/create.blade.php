@@ -29,14 +29,14 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 mb-4 mt-3">
                 <div class="form-group">
-                    <strong>Name :</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                    <strong>Name</strong>
+                    <input style="height:50px" type="text" name="name" class="form-control" placeholder="Name">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
                 <div class="form-group">
-                    <strong>Kelas :</strong>
-                    <select class="form-select" id="floatingSelect" name="kelas">
+                    <strong>Kelas</strong>
+                    <select style="height:50px" class="form-select" id="floatingSelect" name="kelas">
                         <option value="XII RPL">XII RPL</option>
                         <option value="XI RPL">XI RPL</option>
                         <option value="X RPL">X RPL</option>
@@ -46,8 +46,8 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
                 <div class="form-group">
-                    <strong>Nis :</strong>
-                    <input type="number" name="nis" class="form-control" placeholder="Nis">
+                    <strong>Nis</strong>
+                    <input style="height:50px" type="number" name="nis" class="form-control" placeholder="Nis">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
