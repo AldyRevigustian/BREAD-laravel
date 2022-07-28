@@ -49,7 +49,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
                 <div class="form-group">
                     <strong>Harga :</strong>
-                    <input type="text" name="harga" class="form-control" placeholder="Harga">
+                    <input type="number" name="harga" class="form-control" placeholder="Harga">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

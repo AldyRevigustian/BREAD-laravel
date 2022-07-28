@@ -14,14 +14,31 @@ class SeragamController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search')){
-            $seragam = Seragam::where('name',"LIKE","%".$request->search."%")->latest()->paginate(5);
-        }else {
-            $seragam = Seragam::latest()->paginate(5);
+        if ($request->has('search')) {
+            $seragam = Seragam::where('name', "LIKE", "%" . $request->search . "%")->orderBy('name', 'DESC')->latest()->get();
+        } else {
+            $seragam = Seragam::latest()->get();
         }
 
-        return view('seragam.index', compact('seragam'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        if ($request->has('sort')) {
+            // echo($request->sort);
+            if ($request->sort == "DESC") {
+                $seragam = Seragam::orderBy('name', 'DESC')->latest()->get();
+            } else if($request->sort == "ASC"){
+                $seragam = Seragam::orderBy('name', 'ASC')->latest()->get();
+            }
+        }
+
+        if ($request->has('filter')) {
+            if ($request->filter == "Select") {
+                $seragam = Seragam::latest()->get();
+            } else {
+                $seragam = Seragam::where('ukuran', $request->filter)->latest()->get();
+            }
+        }
+
+        return view('seragam.index', compact('seragam'));
     }
 
     /**

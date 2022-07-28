@@ -47,7 +47,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
                 <div class="form-group">
                     <strong>Nis :</strong>
-                    <input type="text" name="nis" class="form-control" placeholder="Nis">
+                    <input type="number" name="nis" class="form-control" placeholder="Nis">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

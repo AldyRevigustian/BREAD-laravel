@@ -16,32 +16,29 @@ class SiswaController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $siswa = Siswa::where('name', "LIKE", "%" . $request->search . "%")->orderBy('name', 'DESC')->latest()->paginate(5);
+            $siswa = Siswa::where('name', "LIKE", "%" . $request->search . "%")->orderBy('name', 'DESC')->latest()->get();
         } else {
-            $siswa = Siswa::latest()->paginate(5);
+            $siswa = Siswa::latest()->get();
         }
 
         if ($request->has('sort')) {
             // echo($request->sort);
             if ($request->sort == "DESC") {
-                $siswa = Siswa::orderBy('name', 'DESC')->latest()->paginate(5);
-            } else {
-                $siswa = Siswa::orderBy('name', 'ASC')->latest()->paginate(5);
+                $siswa = Siswa::orderBy('name', 'DESC')->latest()->get();
+            } else if($request->sort == "ASC"){
+                $siswa = Siswa::orderBy('name', 'ASC')->latest()->get();
             }
         }
 
         if ($request->has('filter')) {
             if ($request->filter == "Select") {
-                $siswa = Siswa::latest()->paginate(5);
+                $siswa = Siswa::latest()->get();
             } else {
-                $siswa = Siswa::where('kelas', $request->filter)->latest()->paginate(5);
+                $siswa = Siswa::where('kelas', $request->filter)->latest()->get();
             }
-        } else {
-            $siswa = Siswa::latest()->paginate(5);
         }
 
-        return view('siswa.index', compact('siswa'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('siswa.index', compact('siswa'));
     }
 
     /**

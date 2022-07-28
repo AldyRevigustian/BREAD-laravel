@@ -12,10 +12,6 @@
     <div class="col-3 my-3">
         <form action="/siswa" method="GET">
             <input type="search" name="search" class="form-control" id="formGroupExampleInput" placeholder="Search...">
-            {{-- <select class="form-select" name="sort">
-                <option value="ASC">ASC</option>
-                <option value="DESC">DESC</option>
-            </select> --}}
         </form>
     </div>
 
@@ -69,7 +65,7 @@
         </tr>
         @foreach ($siswa as $siswas)
             <tr>
-                <td style="text-align:center;">{{ ++$i }}</td>
+                <td style="text-align:center;">{{  $loop->iteration }}</td>
                 <td>{{ $siswas->name }}</td>
                 <td style="text-align:center;">{{ $siswas->kelas }}</td>
                 <td style="text-align:center;">{{ $siswas->nis }}</td>

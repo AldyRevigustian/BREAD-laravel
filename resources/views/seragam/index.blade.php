@@ -16,6 +16,26 @@
         </form>
     </div>
 
+    <div class="col-3 my-3">
+        <form action="/seragam" method="GET">
+            <div class="row">
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example" name="filter">
+                        <option>Select</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -25,14 +45,28 @@
     <table class="table table-bordered table-striped" id="myTable1">
         <tr>
             <th width="50px" style="text-align:center;">No</th>
-            <th style="text-align:center;">Nama</th>
+            <form action="/seragam" method="GET">
+                <th style="text-align:center;" class="name-hover">
+                    Nama
+                    <span>
+                        <button name="sort" value="ASC">
+                            <i class="fa-solid fa-caret-up"></i>
+                        </button>
+                    </span>
+                    <span>
+                        <button name="sort" value="DESC">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </button>
+                    </span>
+                </th>
+            </form>
             <th width="20px" style="text-align:center;">Ukuran</th>
             <th width="230px" style="text-align:center;">Harga</th>
             <th width="230px" style="text-align:center;">Action</th>
         </tr>
         @foreach ($seragam as $seragams)
             <tr>
-                <td style="text-align:center;">{{ ++$i }}</td>
+                <td style="text-align:center;">{{ $loop->iteration }}</td>
                 <td>{{ $seragams->name }}</td>
                 <td style="text-align:center;">{{ $seragams->ukuran }}</td>
                 <td>{{ 'Rp.' . ' ' . $seragams->harga }}</td>
@@ -49,60 +83,3 @@
         @endforeach
     </table>
 @endsection
-
-<script>
-    function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("myTable1");
-        switching = true;
-        // Set the sorting direction to ascending:
-        dir = "asc";
-        /* Make a loop that will continue until
-        no switching has been done: */
-        while (switching) {
-            // Start by saying: no switching is done:
-            switching = false;
-            rows = table.rows;
-            /* Loop through all table rows (except the
-            first, which contains table headers): */
-            for (i = 1; i < (rows.length - 1); i++) {
-                // Start by saying there should be no switching:
-                shouldSwitch = false;
-                /* Get the two elements you want to compare,
-                one from current row and one from the next: */
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
-                /* Check if the two rows should switch place,
-                based on the direction, asc or desc: */
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark that a switch has been done: */
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                // Each time a switch is done, increase this count by 1:
-                switchcount++;
-            } else {
-                /* If no switching has been done AND the direction is "asc",
-                set the direction to "desc" and run the while loop again. */
-                if (switchcount == 0 && dir == "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
-            }
-        }
-    }
-</script>
